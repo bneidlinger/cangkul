@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cangkul (Cangkulan) – Rules & How to Play</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:wght@400;600&display=swap');
+    :root{
+      --bg:#0a0a0b; --panel:#141318; --ink:#f4e5d3; --muted:#b8a590; --accent:#ff6b35; --accent2:#ffd700; --bad:#ff3030;
+      --retro-glow:#ff6b35; --retro-yellow:#ffd700; --retro-green:#4ecdc4;
+    }
+    html,body{height:100%}
+    body{margin:0; font:16px/1.7 'Roboto Mono', monospace; 
+      color:var(--ink); 
+      background: 
+        radial-gradient(ellipse at top, #1a0f0f 0%, #0a0a0b 40%),
+        linear-gradient(180deg, #0a0a0b 0%, #141318 100%);
+      background-blend-mode: multiply;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 1;
+    } 
+    .wrap{max-width:960px; margin:0 auto; padding:28px 20px 80px; position: relative; z-index: 2;}
+    header{display:flex; align-items:center; gap:16px; margin-bottom:24px; flex-wrap: wrap;}
+    header h1{margin:0; font-family: 'Bebas Neue', cursive; font-size: 48px; letter-spacing:2px; 
+      background: linear-gradient(135deg, var(--retro-yellow) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 8px rgba(255,107,53,0.3);
+    }
+    header .badge{padding:8px 14px; background:linear-gradient(135deg, #1a1318, #2a1f28); 
+      border:2px solid var(--accent); border-radius:4px; color:var(--retro-yellow); 
+      font-size:11px; text-transform: uppercase; letter-spacing: 1px;
+      box-shadow: 0 0 20px rgba(255,107,53,0.2), inset 0 0 10px rgba(255,215,0,0.1);}
+    .panel{background:linear-gradient(135deg, #181520, #141318); 
+      border:2px solid #2a1f28; border-radius:8px; padding:20px 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,107,53,0.1);
+      position: relative;
+    }
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: linear-gradient(45deg, var(--accent), transparent, var(--retro-yellow));
+      border-radius: 8px;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    h2{margin:22px 0 10px; font-size:24px; color:var(--accent); 
+      font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;
+      text-shadow: 2px 2px 4px rgba(255,107,53,0.3);}
+    h3{margin:18px 0 8px; font-size:20px; color:var(--retro-yellow);
+      font-family: 'Bebas Neue', cursive; letter-spacing: 1px;}
+    p{margin:10px 0}
+    ul,ol{margin:8px 0 12px 22px}
+    .grid{display:grid; gap:16px}
+    .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .callout{border-left:4px solid var(--retro-glow); padding:12px 14px; 
+      background:linear-gradient(90deg, rgba(255,107,53,0.1), transparent); 
+      border-radius:4px; box-shadow: inset 0 0 20px rgba(255,107,53,0.05);}
+    code.kbd{background:#1a1318; border:2px solid var(--accent); padding:2px 8px; 
+      border-radius:4px; color:var(--retro-yellow); font-weight: 600;}
+    .table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; 
+      border-radius:4px; border:2px solid #2a1f28; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+    .table th,.table td{padding:10px 12px; text-align:left}
+    .table thead th{background:linear-gradient(135deg, #1a1318, #241820); color:var(--retro-yellow); 
+      font-weight:600; border-bottom:2px solid var(--accent); text-transform: uppercase; letter-spacing: 1px;}
+    .table tbody tr:nth-child(odd){background:rgba(255,107,53,0.05);}
+    .qr{display:flex; gap:14px; align-items:flex-start}
+    .pill{display:inline-block; padding:4px 10px; border-radius:20px; 
+      border:2px solid var(--accent); color:var(--retro-yellow); font-size:11px;
+      background: rgba(255,107,53,0.1); text-transform: uppercase; letter-spacing: 0.5px;}
+    .suits{font-size:22px; filter: drop-shadow(0 0 3px currentColor);}
+    .suits span{margin-right:10px; display: inline-block;}
+    .heart{color:#ff3366; text-shadow: 0 0 8px rgba(255,51,102,0.5);}
+    .diamond{color:#ff6b35; text-shadow: 0 0 8px rgba(255,107,53,0.5);}
+    .spade{color:#4ecdc4; text-shadow: 0 0 8px rgba(78,205,196,0.5);}
+    .club{color:#ffd700; text-shadow: 0 0 8px rgba(255,215,0,0.5);}
+    footer{margin-top:28px; color:var(--muted); font-size:13px}
+    .btns{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{background:linear-gradient(135deg, #1a1318, #241820); border:2px solid var(--accent); 
+      color:var(--retro-yellow); padding:10px 16px; border-radius:4px; cursor:pointer;
+      text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255,107,53,0.2);}
+    .btn:hover{border-color:var(--retro-yellow); box-shadow: 0 0 20px rgba(255,215,0,0.4);
+      transform: translateY(-2px);}
+    a{color:var(--retro-green); text-decoration: none; border-bottom: 1px dotted var(--retro-green);}
+    a:hover{color:var(--retro-yellow); border-bottom-color: var(--retro-yellow);}
+    .tag{font-size:12px; color:var(--muted); text-transform: uppercase; letter-spacing: 0.5px;}
+    .dog-section{margin-top:24px; padding:24px; background:linear-gradient(135deg, #1a1318, #141318);
+      border:2px solid #2a1f28; border-radius:8px; text-align:center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);}
+    .dog-container{display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:20px;}
+    .dog-card{text-align:center;}
+    .dog-card img{width:120px; height:120px; border-radius:50%; border:3px solid var(--accent);
+      box-shadow: 0 0 30px rgba(255,107,53,0.4); object-fit:cover;}
+    .dog-name{margin-top:12px; font-family:'Bebas Neue',cursive; font-size:20px; 
+      color:var(--retro-yellow); letter-spacing:1px; text-transform:uppercase;}
+    .dog-title{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;}
+    .interstellar-quote{margin-top:32px; padding:24px; text-align:center; 
+      font-style:italic; color:var(--retro-yellow); font-size:18px;
+      background:linear-gradient(135deg, rgba(255,107,53,0.05), transparent);
+      border-left:4px solid var(--accent); border-right:4px solid var(--accent);}
+    .quote-author{font-size:12px; color:var(--muted); margin-top:8px; 
+      text-transform:uppercase; letter-spacing:1px; font-style:normal;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Cangkul (Cangkulan)</h1>
+        <div class="tag">Traditional Indonesian follow‑suit card game • aka <em>Minuman</em></div>
+      </div>
+      <div class="badge">Rules & How to Play</div>
+    </header>
+
+    <section class="panel">
+      <h2>Quick Start (TL;DR)</h2>
+      <ol>
+        <li>Players: <strong>3–5</strong> is standard (2+ works with house rules).</li>
+        <li>Deal: <strong>7 cards each</strong>. Put the rest face‑down as the stock.</li>
+        <li>Lead: Player left of dealer leads <strong>any card</strong>.</li>
+        <li>Follow suit: Each player must play the <strong>same suit</strong> if possible.</li>
+        <li><strong>Cangkul</strong> (dig): Can’t follow suit? Draw from stock <em>until</em> you can, then immediately play that card.</li>
+        <li>Highest card of the led suit takes the trick and leads next. No trumps.</li>
+        <li>First to <strong>empty their hand</strong> wins the hand. Keep playing to crown the last player with cards as the loser (optional).</li>
+      </ol>
+    </section>
+
+    <div class="grid cols-2" style="margin-top:16px">
+      <section class="panel">
+        <h2>Components</h2>
+        <ul>
+          <li>1× standard 52‑card deck (🂡–🂲). Aces high by default.</li>
+          <li>Joker optional (see variants).</li>
+        </ul>
+        <div class="suits" aria-label="Card suits">
+          <span class="heart">♥ Hearts</span>
+          <span class="diamond">♦ Diamonds</span>
+          <span class="spade">♠ Spades</span>
+          <span class="club">♣ Clubs</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Setup</h2>
+        <ol>
+          <li>Choose a dealer. Shuffle and deal <strong>7 cards</strong> to each player.</li>
+          <li>Place the remaining deck face‑down as the <em>stock</em>.</li>
+          <li>Play proceeds <strong>clockwise</strong>. The player left of the dealer leads the first card.</li>
+        </ol>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Turn Structure</h2>
+      <ol>
+        <li><strong>Lead</strong> any card (suit of your choice) if it’s your lead.</li>
+        <li><strong>Follow suit</strong>: Each subsequent player must play a card of that suit if they have one.</li>
+        <li><strong>Cangkul (Dig)</strong>:
+          <ul>
+            <li>If you can’t follow suit, draw the top card of the stock.</li>
+            <li>If it matches the required suit, you <em>must</em> immediately play it.</li>
+            <li>If not, add it to your hand (hidden) and keep drawing until you find the suit, then play it.</li>
+          </ul>
+        </li>
+        <li><strong>Take the trick</strong>: The highest card of the led suit wins the trick. The winner leads any card to start the next trick.</li>
+      </ol>
+      <div class="callout"><strong>When the stock runs out</strong>: If you can’t follow suit and there are no cards left to draw, you simply <em>pass</em>. At the end of that incomplete trick, anyone who passed must pick up cards from the middle (see Edge Cases) before play continues.</div>
+    </section>
+
+    <section class="panel">
+      <h2>Edge Cases (End‑of‑Stock Rules)</h2>
+      <ol>
+        <li>If a player can’t follow suit and the stock is empty, they <strong>don’t play</strong> to that trick (they pass).</li>
+        <li>After that trick ends, players who passed must <strong>pick up</strong> the cards from the middle, in order of who passed first (clockwise), until all those cards are taken.</li>
+        <li>The player who played the highest card to that (incomplete) trick leads again.</li>
+      </ol>
+    </section>
+
+    <div class="grid cols-2" style="margin-top:16px">
+      <section class="panel">
+        <h2>Winning & Scoring</h2>
+        <ul>
+          <li><strong>Winner of the hand</strong>: first to play their last card.</li>
+          <li><strong>Find the loser (optional)</strong>: continue playing as each player goes out; the last player still holding cards is the loser.</li>
+          <li><strong>Match scoring (house rule)</strong>: Play to N wins, or award 1 point for each player you beat; lowest score loses, highest wins—your table, your call.</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>Card Rank</h2>
+        <table class="table" aria-label="Card ranks high to low">
+          <thead><tr><th>High → Low</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>A K Q J 10 9 8 7 6 5 4 3 2</td><td>Aces high by default. No trumps.</td></tr>
+          </tbody>
+        </table>
+        <div class="pill">Use a Joker? See Variants ↓</div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Variants & House Rules</h2>
+      <h3>Joker variant</h3>
+      <ul>
+        <li>Add 1 Joker (53‑card deck).</li>
+        <li>Joker <strong>always wins</strong> the trick it’s played to.</li>
+        <li>If Joker is <em>led</em>, the next player sets the suit by playing any card, which others must follow.</li>
+        <li>Some tables require you to play the Joker if you can’t follow suit (no drawing while holding Joker). Agree before play.</li>
+      </ul>
+      <h3>Player counts</h3>
+      <ul>
+        <li><strong>3–5</strong> ideal. Many groups also enjoy 4–7; for 2‑player, deal 7–10 each and keep a healthy stock.</li>
+      </ul>
+      <h3>Continue to find the loser</h3>
+      <p>After the first player goes out, play on until one person remains with cards. Crown them the round’s <em>keledai</em> (donkey) for laughs.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Example Turn</h2>
+      <ol>
+        <li>A leads <span class="heart">♥7</span>. B plays <span class="heart">♥Q</span>, C <span class="heart">♥10</span>. D has no hearts.
+          <ul>
+            <li>D draws: ♣4 (no), ♦9 (no), <span class="heart">♥3</span> (yes) → must play it now.</li>
+          </ul>
+        </li>
+        <li>B’s <span class="heart">♥Q</span> is highest and takes the trick. B leads next, any suit.</li>
+        <li>Later, the stock is empty. C leads ♠5. D can’t follow and must <strong>pass</strong>. After the trick ends, D picks up cards from that center pile before the next lead.</li>
+      </ol>
+    </section>
+
+    <section class="panel">
+      <h2>Strategy Hints</h2>
+      <ul>
+        <li><strong>Lead short suits</strong> early to strand opponents into digging.</li>
+        <li><strong>Count suits</strong>—notice who keeps drawing on a suit; lead it again to pressure them.</li>
+        <li><strong>Preserve your lone high cards</strong> (A/K) to seize the lead when it matters.</li>
+        <li><strong>When stock is low</strong>, lead suits you think others don’t have; forced passes become pickups after the trick.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Glossary (EN ⇄ ID)</h2>
+      <ul>
+        <li><strong>Cangkul</strong> = “dig” (draw until you can follow suit)</li>
+        <li><strong>Buang kartu</strong> = discard / play a card</li>
+        <li><strong>Ikuti jenis</strong> = follow suit</li>
+        <li><strong>Kartu stok</strong> = stock / draw pile</li>
+        <li><strong>Trik</strong> = trick (set of one card per player in a round)</li>
+        <li><strong>Gilir</strong> = turn / move</li>
+        <li><strong>Habis kartu</strong> = out of cards (you win!)</li>
+      </ul>
+      <p class="tag">Sample table banter: “<em>Tidak punya sekop—cangkul!</em>” (I don’t have spades—dig!)</p>
+    </section>
+
+    <section class="panel">
+      <h2>Printable Quick Reference</h2>
+      <div class="qr">
+        <div>
+          <ul>
+            <li>Deal 7 each, rest face‑down → stock.</li>
+            <li>Left of dealer leads any card.</li>
+            <li>Follow suit; if you can't, draw until you can, then play it immediately.</li>
+            <li>Highest of suit led takes the trick; winner leads next.</li>
+            <li>Out of cards = you win. Keep playing to tag the last holder as loser (optional).</li>
+            <li>Joker (optional): always wins; if led, next card sets the suit.</li>
+          </ul>
+        </div>
+        <div class="btns">
+          <button class="btn" onclick="window.print()">Print</button>
+          <button class="btn" onclick="navigator.clipboard.writeText('https://bneidlinger.github.io/cangkul/').catch(()=>{})">Copy Link</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel dog-section">
+      <h2>Meet the Card Masters</h2>
+      <div class="dog-container">
+        <div class="dog-card">
+          <img src="dog.png" alt="Gimli the Card Master">
+          <div class="dog-name">Gimli</div>
+          <div class="dog-title">Master of Tricks</div>
+        </div>
+        <div class="dog-card">
+          <img src="game.png" alt="Eleanor the Card Sage">
+          <div class="dog-name">Eleanor</div>
+          <div class="dog-title">Guardian of the Deck</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="interstellar-quote">
+      "We used to look up at the sky and wonder at our place in the stars. Now we just look down, and worry about our place in the dirt."
+      <div class="quote-author">— Interstellar</div>
+    </div>
+
+    <footer>
+      <div>Crafted as a quick, modern guide to <em>Cangkul</em>/<em>Cangkulan</em>. Have fun, and don't forget to shout <strong>"Cangkul!"</strong> when you have to dig.</div>
+      <div class="tag" style="margin-top:8px;">Hosted on GitHub Pages • bneidlinger/cangkul</div>
+    </footer>
+  </div>
+</body>
+</html>
