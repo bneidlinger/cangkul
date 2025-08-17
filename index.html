@@ -106,16 +106,31 @@
     a{color:var(--retro-green); text-decoration: none; border-bottom: 1px dotted var(--retro-green);}
     a:hover{color:var(--retro-yellow); border-bottom-color: var(--retro-yellow);}
     .tag{font-size:12px; color:var(--muted); text-transform: uppercase; letter-spacing: 0.5px;}
-    .dog-section{margin-top:24px; padding:24px; background:linear-gradient(135deg, #1a1318, #141318);
-      border:2px solid #2a1f28; border-radius:8px; text-align:center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);}
-    .dog-container{display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:20px;}
-    .dog-card{text-align:center;}
-    .dog-card img{width:120px; height:120px; border-radius:50%; border:3px solid var(--accent);
-      box-shadow: 0 0 30px rgba(255,107,53,0.4); object-fit:cover;}
-    .dog-name{margin-top:12px; font-family:'Bebas Neue',cursive; font-size:20px; 
-      color:var(--retro-yellow); letter-spacing:1px; text-transform:uppercase;}
-    .dog-title{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;}
+    .dog-section{margin-bottom:32px; padding:32px; background:linear-gradient(135deg, #1a1318, #141318);
+      border:3px solid var(--accent); border-radius:12px; text-align:center;
+      box-shadow: 0 8px 30px rgba(255,107,53,0.3), inset 0 0 40px rgba(255,215,0,0.05);
+      position: relative;
+      overflow: hidden;}
+    .dog-section::before {
+      content: '🎴';
+      position: absolute;
+      font-size: 120px;
+      opacity: 0.05;
+      top: -20px;
+      right: -20px;
+      transform: rotate(-15deg);
+    }
+    .dog-container{display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-top:24px;}
+    .dog-card{text-align:center; transition: transform 0.3s ease;}
+    .dog-card:hover{transform: scale(1.05) rotate(-2deg);}
+    .dog-card img{width:180px; height:180px; border-radius:50%; border:4px solid var(--retro-yellow);
+      box-shadow: 0 0 40px rgba(255,215,0,0.4), 0 8px 20px rgba(0,0,0,0.3); object-fit:cover;}
+    .dog-name{margin-top:16px; font-family:'Bebas Neue',cursive; font-size:32px; 
+      color:var(--retro-yellow); letter-spacing:2px; text-transform:uppercase;
+      text-shadow: 3px 3px 6px rgba(255,107,53,0.5);}
+    .dog-title{font-size:14px; color:var(--accent); text-transform:uppercase; letter-spacing:1px;
+      font-weight: 600; margin-top: 4px;}
+    .dog-speech{font-size:13px; color:var(--muted); margin-top:8px; font-style:italic;}
     .interstellar-quote{margin-top:32px; padding:24px; text-align:center; 
       font-style:italic; color:var(--retro-yellow); font-size:18px;
       background:linear-gradient(135deg, rgba(255,107,53,0.05), transparent);
@@ -133,6 +148,24 @@
       </div>
       <div class="badge">Rules & How to Play</div>
     </header>
+
+    <section class="panel dog-section">
+      <h2 style="font-size:36px; margin-top:0;">🎯 Your Card Game Supervisors 🎯</h2>
+      <div class="dog-container">
+        <div class="dog-card">
+          <img src="dog.png" alt="Gimli the Card Master">
+          <div class="dog-name">Gimli</div>
+          <div class="dog-title">Chief of Chaos</div>
+          <div class="dog-speech">"No take backs!"</div>
+        </div>
+        <div class="dog-card">
+          <img src="dog2.png" alt="Eleanor the Card Sage">
+          <div class="dog-name">Eleanor</div>
+          <div class="dog-title">Rules Enforcer</div>
+          <div class="dog-speech">"I saw that card up your sleeve"</div>
+        </div>
+      </div>
+    </section>
 
     <section class="panel">
       <h2>Quick Start (TL;DR)</h2>
@@ -294,21 +327,6 @@
       </div>
     </section>
 
-    <section class="panel dog-section">
-      <h2>Meet the Card Masters</h2>
-      <div class="dog-container">
-        <div class="dog-card">
-          <img src="dog.png" alt="Gimli the Card Master">
-          <div class="dog-name">Gimli</div>
-          <div class="dog-title">Master of Tricks</div>
-        </div>
-        <div class="dog-card">
-          <img src="game.png" alt="Eleanor the Card Sage">
-          <div class="dog-name">Eleanor</div>
-          <div class="dog-title">Guardian of the Deck</div>
-        </div>
-      </div>
-    </section>
 
     <div class="interstellar-quote">
       "We used to look up at the sky and wonder at our place in the stars. Now we just look down, and worry about our place in the dirt."
